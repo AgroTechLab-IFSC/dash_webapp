@@ -18,7 +18,7 @@ import yaml
 
 # Leitura dos dados que serão utilizados (é ideal que estes estejam em uma BD)
 with open('./config.yaml') as file:
-    env = yaml.load()
+    env = yaml.load(file)
 
 dbstring = 'postgresql+psycopg2://{}:{}@127.0.0.1/{}'.format(
     env['userdatabase'],
