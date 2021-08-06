@@ -14,8 +14,18 @@ from app.frontend import main
 from app.backend.callbacks import *
 from app.server import app, server
 
+import yaml
+
 # Leitura dos dados que serão utilizados (é ideal que estes estejam em uma BD)
-engine = create_engine('postgresql+psycopg2://postgres:postgres@127.0.0.1/agrotech', pool_recycle=3600)
+with open('./config.yaml') as file:
+    env = yaml.load()
+
+dbstring = 'postgresql+psycopg2://{}:{}@127.0.0.1/{}'.format(
+    env['userdatabase'],
+    env['passdatabase'],
+    env['database'])
+
+engine = create_engine(dbstring, pool_recycle=3600)
 conn = engine.connect()
 
 dados_mapa = pd.read_sql("""
