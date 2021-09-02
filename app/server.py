@@ -19,7 +19,7 @@ app = dash.Dash(
     external_stylesheets=[
         dbc.themes.BOOTSTRAP        
     ],
-
+    requests_pathname_prefix='/5000/',
     external_scripts=[
     ]
 )
